@@ -8,6 +8,7 @@ if __name__ == "__main__":
     data_length = 1000  # 데이터 길이 많은 데이터를 보내고 싶을 경우 이를 수정하면 됨
     server_address = 0  # 서버 주소 미리 선언(unbound를 피하기 위함)
     client_socket = socket(AF_INET, SOCK_DGRAM)
+    client_socket.settimeout(1)
     count_error = 0  # 손실 횟수
 
     # 왕복시간을 구해 최소, 최대, 시간합을 구하기 위해 선언
