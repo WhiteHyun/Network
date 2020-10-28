@@ -1,5 +1,5 @@
 from socket import *
-IP_ADD = 0
+IP_ADD = 0  # 클라이언트 주소의 주소와 포트 중 주소 인덱스를 가리킴
 if __name__ == "__main__":
     server_port = 12000
     server_socket = socket(AF_INET, SOCK_DGRAM)
