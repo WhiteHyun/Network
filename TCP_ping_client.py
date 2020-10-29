@@ -2,13 +2,13 @@ from socket import *
 import time
 
 if __name__ == "__main__":
-    # server_name = '106.252.222.137'  # Desktop 내부주소 언제든 변경 가능
-    server_name = '127.0.0.1'  # Desktop 내부주소 언제든 변경 가능
+    server_name = '10.101.3.27'  # Desktop 내부주소 언제든 변경 가능
+    # server_name = '127.0.0.1'  # Desktop 내부주소 언제든 변경 가능
     server_port = 12000
     data_length = 1000  # 데이터 길이 많은 데이터를 보내고 싶을 경우 이를 수정하면 됨
     client_socket = socket(AF_INET, SOCK_STREAM)
     client_socket.connect((server_name, server_port))  # 3-way handshake
-    client_socket.settimeout(1)
+    client_socket.settimeout(0.3)  # Read timeout
     count_error = 0  # 손실 횟수
 
     # 왕복시간을 구해 최소, 최대, 시간합을 구하기 위해 선언
@@ -54,6 +54,9 @@ if __name__ == "__main__":
     print(f"""
     {server_name}에 대한 Ping 통계:
         패킷: 보냄 = {count_send}, 받음 = {count_recv}, 손실 = {count_error} ({count_error/count_send*100}% 손실)
+    """)
+    if count_recv != 0:
+        print(f"""
     왕복 시간(밀리초):
         최소 = {int(min_time)}ms, 최대 = {int(max_time)}ms, 평균 = {int(sum_time // count_recv)}ms
     """)
