@@ -3,9 +3,9 @@ import time
 
 if __name__ == "__main__":
     server_name = '192.168.0.3'  # Desktop 내부주소 언제든 변경 가능
-    server_port = 12000
+    server_port = 25565
     data_length = 1000  # 데이터 길이 많은 데이터를 보내고 싶을 경우 이를 수정하면 됨
-    client_socket = socket(AF_INET, SOCK_SEQPACKET)
+    client_socket = socket(AF_INET, SOCK_STREAM)
     client_socket.connect((server_name, server_port))  # 3-way handshake
     client_socket.settimeout(1)
     count_error = 0  # 손실 횟수
