@@ -2,8 +2,9 @@ from socket import *
 import time
 
 if __name__ == "__main__":
-    server_name = '192.168.0.3'  # Desktop 내부주소 언제든 변경 가능
-    server_port = 25565
+    # server_name = '106.252.222.137'  # Desktop 내부주소 언제든 변경 가능
+    server_name = '127.0.0.1'  # Desktop 내부주소 언제든 변경 가능
+    server_port = 12000
     data_length = 1000  # 데이터 길이 많은 데이터를 보내고 싶을 경우 이를 수정하면 됨
     client_socket = socket(AF_INET, SOCK_STREAM)
     client_socket.connect((server_name, server_port))  # 3-way handshake
@@ -16,13 +17,14 @@ if __name__ == "__main__":
 
     for data in range(1, data_length+1):
         data = f"ping{data} {time.asctime()}"
+        # data = str(data)
 
         try:
             start = time.time()  # Sent time
             # Send the TCP packet with the ping message
             client_socket.send(data.encode())
             # Received the server response
-            modified_message = client_socket.recv(2048)
+            modified_message = client_socket.recv(1024)
             end = time.time()  # Received time
 
             # Round trip time is the difference between sent and received time
@@ -42,6 +44,9 @@ if __name__ == "__main__":
             count_error += 1
             continue
 
+    # Close the client socket
+    client_socket.close()
+
     count_send = data_length  # 보낸 횟수
     count_recv = data_length - count_error  # 받은 횟수
 
@@ -52,6 +57,3 @@ if __name__ == "__main__":
     왕복 시간(밀리초):
         최소 = {int(min_time)}ms, 최대 = {int(max_time)}ms, 평균 = {int(sum_time // count_recv)}ms
     """)
-
-    # Close the client socket
-    client_socket.close()
