@@ -3,10 +3,9 @@ import time
 
 IP_ADD = 0  # 클라이언트 주소의 주소와 포트 중 주소 인덱스를 가리킴
 if __name__ == "__main__":
-    server_name = '127.0.0.1'  # Desktop 내부주소 언제든 변경 가능
     server_name = '10.101.3.27'  # Desktop 내부주소 언제든 변경 가능
     server_port = 12000
-    data_length = 10  # 데이터 길이 많은 데이터를 보내고 싶을 경우 이를 수정하면 됨
+    data_length = 1000  # 데이터 길이 많은 데이터를 보내고 싶을 경우 이를 수정하면 됨
     server_address = 0  # 서버 주소 미리 선언(unbound를 피하기 위함)
     client_socket = socket(AF_INET, SOCK_DGRAM)
     client_socket.settimeout(1)  # 연결지연시간을 1초로 설정
