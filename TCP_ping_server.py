@@ -8,13 +8,13 @@ if __name__ == "__main__":
     server_socket.bind(("", server_port))
     server_socket.listen(1)
     print("The server is ready to receive")
-    sentence = ' '
     while True:
+        sentence = ' '
         connection_socket, addr = server_socket.accept()
         while sentence != '':
             sentence = connection_socket.recv(1024).decode()
             capitalized_sentence = sentence.upper()
             print(f"Received from ({addr[IP_ADD]}), Message: '{sentence}'")
             connection_socket.send(capitalized_sentence.encode())
-        sentence = ' '
         connection_socket.close()
+    server_socket.close()
