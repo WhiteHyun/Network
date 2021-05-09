@@ -1,1 +1,4 @@
-![image](https://user-images.githubusercontent.com/57972338/117529713-0d113c80-b014-11eb-801a-cdb4bc432b81.png)
+# 데이터 통신 과제
+
+- [homework1](/hw1)
+- [homework2](/hw2)
